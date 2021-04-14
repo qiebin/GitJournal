@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 
 class Features {
-  static const bool alwaysPro = false;
+  static const bool alwaysPro = true;
   static const bool perFolderConfig = false;
 
   static final all = <Feature>[
@@ -113,7 +113,7 @@ class Feature {
     DateTime(2019, 12, 20),
     tr("feature.noteMetaDataCustomize.title"),
     tr("feature.noteMetaDataCustomize.subtitle"),
-    true,
+    false,
   );
 
   static final autoMergeConflicts = Feature(
@@ -209,7 +209,7 @@ class Feature {
     DateTime(2020, 04, 01),
     tr("feature.journalEditorDefaultFolder"),
     "",
-    true,
+    false,
   );
 
   static final customizeHomeScreen = Feature(
@@ -217,7 +217,7 @@ class Feature {
     DateTime(2020, 05, 06),
     tr("feature.customizeHomeScreen"),
     "",
-    true,
+    false,
   );
 
   static final imageSupport = Feature(
@@ -233,7 +233,7 @@ class Feature {
     DateTime(2020, 05, 14),
     tr("feature.tags"),
     "",
-    true,
+    false,
   );
 
   static final appShortcuts = Feature(
@@ -257,7 +257,7 @@ class Feature {
     DateTime(2020, 05, 27),
     tr("feature.backlinks"),
     "",
-    true,
+    false,
   );
 
   static final txtFiles = Feature(
@@ -281,7 +281,7 @@ class Feature {
     DateTime(2020, 07, 28),
     tr("feature.zenMode"),
     "",
-    true,
+    false,
   );
 
   static final metaDataTitle = Feature(
@@ -313,7 +313,7 @@ class Feature {
     DateTime(2020, 08, 18),
     tr("feature.customMetaData"),
     "",
-    true,
+    false,
   );
 
   static final localization = Feature(
@@ -329,7 +329,7 @@ class Feature {
     DateTime(2020, 09, 02),
     tr("feature.inlineTags"),
     "",
-    true,
+    false,
   );
 
   static final singleJournalEntry = Feature(
@@ -337,7 +337,7 @@ class Feature {
     DateTime(2020, 09, 16),
     tr("feature.singleJournalEntry"),
     "",
-    true,
+    false,
   );
 
   static final configureBottomMenuBar = Feature(
@@ -345,7 +345,7 @@ class Feature {
     DateTime(2020, 10, 05),
     tr("feature.configureBottomMenuBar"),
     "",
-    true,
+    false,
   );
 
   static final customFileNamePerEditor = Feature(
@@ -353,7 +353,7 @@ class Feature {
     DateTime(2020, 10, 05),
     tr("feature.customFileNamePerEditor"),
     "",
-    true,
+    false,
   );
 }
 

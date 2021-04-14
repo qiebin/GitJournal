@@ -11,6 +11,7 @@ import 'package:gitjournal/error_reporting.dart';
 import 'package:gitjournal/utils/logger.dart';
 import 'package:gitjournal/widgets/editor_scroll_view.dart';
 import 'package:gitjournal/widgets/journal_editor_header.dart';
+import 'package:intl/intl.dart';
 
 class JournalEditor extends StatefulWidget implements Editor {
   final Note note;
@@ -62,7 +63,63 @@ class JournalEditorState extends State<JournalEditor>
 
   EditorHeuristics _heuristics;
 
+
+  String getWeek(DateTime dateTime) {
+    ///当前选中时间 周几
+    var currentWeekDay = dateTime.weekday;
+
+    ///周四
+    //int WEEK_DAY = DateTime.thursday;
+
+    DateTime epoch = DateTime.utc(dateTime.year);
+
+    int offset = DateTime.monday - currentWeekDay;
+
+    int delta =  - offset;
+
+    int week = (dateTime.difference(epoch).inDays - delta) ~/ 7 + 1;
+    return intToStr(week);
+  }
+
+  String intToStr(int v) {
+    return (v < 10) ? "0$v" : "$v";
+  }///周,如果当年的12月31是周四，则当年有53周 （国际规定是周四为一周的第一天）
   JournalEditorState(this.note) {
+    if(note.body == ''){
+      var nowTime = DateTime.now();
+      note.body="# "+DateFormat('yyyy-MM-dd').format(nowTime)+"\n\n"
+
+      +"[["+nowTime.year.toString()+"-W"+getWeek(nowTime)+"]]\n\n"
+
+      +"```expander\n"
+      +"{{tag:#FleetingNote -path:Templates}}\n"
+    +"```\n"
+    +"<--->\n\n"
+
+    +"## Day Planner\n\n"
+
+    +"### Morning Prep 🤠\n\n"
+
+    +"- [ ] 09:30 Review yesterday\n"
+    +"- [ ] 10:30 Reading\n"
+          +"- [ ] 11:30 Writing\n\n"
+
+          +"### Reading 👓\n\n"
+
+          +"- [ ] 12:00 Reading\n"
+          +"- [ ] 14:00 Writing\n\n"
+
+          +"### Afternoon Review 🚀\n\n"
+
+          +"- [ ] 15:00 Reading\n"
+          +"- [ ] 16:30 Writing\n"
+          +"- [ ] 17:20 Prep for tomorrow\n"
+          +"- [ ] 18:00 Review today\n\n"
+
+          +"## 间隔笔记：\n"
+          +"- "
+      ;
+    }
     _textController = TextEditingController(text: note.body);
   }
 
@@ -95,7 +152,7 @@ class JournalEditorState extends State<JournalEditor>
     var editor = EditorScrollView(
       child: Column(
         children: <Widget>[
-          JournalEditorHeader(note),
+          //JournalEditorHeader(note),
           NoteBodyEditor(
             textController: _textController,
             autofocus: widget.editMode,

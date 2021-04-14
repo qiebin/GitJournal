@@ -23,7 +23,7 @@ class AppSettings extends ChangeNotifier {
 
   var proMode = Features.alwaysPro;
   var proExpirationDate = "";
-  var validateProMode = true;
+  var validateProMode = false;
 
   String _pseudoId;
   String get pseudoId => _pseudoId;

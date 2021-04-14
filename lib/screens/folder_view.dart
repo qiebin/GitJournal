@@ -176,7 +176,7 @@ class _FolderViewState extends State<FolderView> {
     var folder = widget.notesFolder;
     NotesFolderFS fsFolder = folder.fsFolder;
     var isVirtualFolder = folder.name != folder.fsFolder.name;
-    if (isVirtualFolder) {
+    if (isVirtualFolder || editorType == EditorType.Journal || editorType == EditorType.Checklist || editorType == EditorType.Markdown) {
       var rootFolder = Provider.of<NotesFolderFS>(context, listen: false);
       var settings = Provider.of<Settings>(context, listen: false);
 

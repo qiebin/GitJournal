@@ -7,7 +7,7 @@ import 'package:gitjournal/utils/logger.dart';
 final _dateOnlyFormat = DateFormat("yyyy-MM-dd");
 final _simpleDateFormat = DateFormat("yyyy-MM-dd-HH-mm-ss");
 final _iso8601DateFormat = DateFormat("yyyy-MM-ddTHH:mm:ss");
-final _zettleDateFormat = DateFormat("yyyyMMddHHmmss");
+final _zettleDateFormat = DateFormat("yyyyMMddHHmm");
 
 String toDateString(DateTime dt) {
   return _dateOnlyFormat.format(dt);

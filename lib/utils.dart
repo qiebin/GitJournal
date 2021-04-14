@@ -58,6 +58,12 @@ NotesFolderFS getFolderForEditor(
     case EditorType.Journal:
       spec = settings.journalEditordefaultNewNoteFolderSpec;
       break;
+    case EditorType.Checklist:
+      spec = "Weekly Notes";
+      break;
+    case EditorType.Markdown:
+      spec = "Permanent Notes";
+      break;
     default:
       break;
   }

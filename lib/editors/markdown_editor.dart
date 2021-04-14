@@ -72,6 +72,16 @@ class MarkdownEditorState extends State<MarkdownEditor>
   bool _noteModified;
 
   MarkdownEditorState(this.note) {
+    if(note.body == ''){
+      note.body = "# 标题\n"
++"#FleetingNote\n\n\n\n\n\n\n"
+
+
+
+
+          +"<!-- footnotes -->\n"
+          +"[^1]: [LiteratureTitle](zotero://select/items/1_xxx)";
+    }
     _textController = TextEditingController(text: note.body);
     _titleTextController = TextEditingController(text: note.title);
   }

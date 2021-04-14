@@ -12,7 +12,7 @@ class ProOverlay extends StatelessWidget {
   final Feature feature;
 
   ProOverlay({@required this.child, @required this.feature}) {
-    assert(feature.pro == true);
+    //assert(feature.pro == true);
   }
 
   @override

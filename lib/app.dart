@@ -195,11 +195,7 @@ class _JournalAppState extends State<JournalApp> {
     });
 
     quickActions.setShortcutItems(<ShortcutItem>[
-      ShortcutItem(
-        type: 'Markdown',
-        localizedTitle: tr('actions.newNote'),
-        icon: "ic_markdown",
-      ),
+
       ShortcutItem(
         type: 'Checklist',
         localizedTitle: tr('actions.newChecklist'),

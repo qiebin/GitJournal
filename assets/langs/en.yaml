@@ -124,7 +124,7 @@ settings:
     title: Title
     uuid: Uuid V4
     simmple: yyyy-mm-dd-hh-mm-ss
-    zettelkasten: yyyymmddhhmmss
+    zettelkasten: yyyymmddhhmm
     dateOnly: yyyy-mm-dd
   HomeScreen:
     allNotes: All Notes

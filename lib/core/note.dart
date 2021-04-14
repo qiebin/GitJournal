@@ -272,6 +272,11 @@ class Note with NotesNotifier {
   }
 
   bool get canHaveMetadata {
+    var isJournal = type == NoteType.Journal;
+    var isCheckList = type == NoteType.Checklist;
+    if(isJournal || isCheckList) {
+      return false;
+    }
     if (_fileFormat == NoteFileFormat.Txt) {
       return false;
     }
@@ -525,9 +530,55 @@ class Note with NotesNotifier {
     return p.join(parent.pathSpec(), fileName);
   }
 
+  String getWeek(DateTime dateTime) {
+    ///当前选中时间 周几
+    var currentWeekDay = dateTime.weekday;
+
+    ///周四
+    //int WEEK_DAY = DateTime.thursday;
+
+    DateTime epoch = DateTime.utc(dateTime.year);
+
+    int offset = DateTime.monday - currentWeekDay;
+
+    int delta =  - offset;
+
+    int week = (dateTime.difference(epoch).inDays - delta) ~/ 7 + 1;
+    return intToStr(week);
+  }
+  String intToStr(int v) {
+    return (v < 10) ? "0$v" : "$v";
+  }
+
   String _buildFileName() {
     var date = created ?? modified ?? fileLastModified ?? DateTime.now();
     var isJournal = type == NoteType.Journal;
+    var isCheckList = type == NoteType.Checklist;
+    if (isCheckList) {
+      var nowTime = DateTime.now();
+      var week = getWeek(nowTime);
+      var weekName = nowTime.year.toString()+"-W"+week;
+
+      var fileName = weekName + ".md";
+      var fullPath = p.join(parent.folderPath, fileName);
+      var file = File(fullPath);
+      if (!file.existsSync()) {
+        return weekName;
+      }
+
+      int next = int.parse(week) + 1;
+      String nextString = next.toString();
+      if(next < 10){
+        nextString = "0" + next.toString();
+      }
+      var nextWeek = nowTime.year.toString()+"-W"+nextString;
+      var fileName1 = nextWeek + ".md";
+      var fullPath1 = p.join(parent.folderPath, fileName1);
+      var file1 = File(fullPath1);
+      if (!file1.existsSync()) {
+        return nextWeek;
+      }
+    }
     switch (!isJournal
         ? parent.config.fileNameFormat
         : parent.config.journalFileNameFormat) {
